@@ -1,0 +1,24 @@
+# Ambiente e credenciais — NUNCA suba isso (tem a senha do banco)
+.env
+
+# Dependências do Composer — quem clonar o repo reinstala com "composer install"
+/vendor/
+
+# Cache, logs e sessões que o próprio CodeIgniter gera
+/writable/cache/*
+/writable/logs/*
+/writable/session/*
+/writable/uploads/*
+!/writable/cache/index.html
+!/writable/logs/index.html
+!/writable/session/index.html
+!/writable/uploads/index.html
+
+# Arquivos do sistema operacional / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Node, caso você use em algum momento (Tailwind, etc.)
+/node_modules/

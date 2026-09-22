@@ -1,0 +1,1318 @@
+/* ==========================================================================
+   Nexus — Central de Inteligência para Análise de Atendimentos ERP
+   Folha de estilo base. Altere apenas as variáveis abaixo para
+   ajustar a identidade visual em todo o sistema.
+   ========================================================================== */
+
+:root {
+  --nexus-blue:        #1565f0;
+  --nexus-blue-dark:   #0d4bc4;
+  --nexus-blue-light:  #e8f0fe;
+
+  --nexus-header:      #2e2e2e;
+  --nexus-header-line: #454545;
+
+  --nexus-bg:          #e2e4e7;
+  --nexus-surface:     #ffffff;
+  --nexus-surface-alt: #f4f5f7;
+
+  --nexus-text:        #1c1c1c;
+  --nexus-text-muted:  #5a5f66;
+  --nexus-border:      #d5d8dd;
+
+  --nexus-radius:      4px;
+  --nexus-radius-pill: 999px;
+
+  --nexus-shadow:      0 1px 3px rgba(0, 0, 0, .10);
+  --nexus-shadow-lg:   0 6px 18px rgba(0, 0, 0, .14);
+
+  --nexus-font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--nexus-font);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--nexus-text);
+  background-color: var(--nexus-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --------------------------------------------------------------------------
+   Cabeçalho
+   -------------------------------------------------------------------------- */
+
+.nexus-header {
+  background-color: var(--nexus-header);
+  border-bottom: 1px solid var(--nexus-header-line);
+  padding: 22px 32px;
+}
+
+.nexus-header__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.nexus-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+
+.nexus-brand__mark {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+}
+
+.nexus-brand__name {
+  display: block;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  color: var(--nexus-blue);
+}
+
+.nexus-brand__tagline {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #c9ccd1;
+}
+
+.nexus-header__user {
+  font-size: 13px;
+  color: #c9ccd1;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   Estrutura da página
+   -------------------------------------------------------------------------- */
+
+.nexus-main {
+  flex: 1;
+  padding: 48px 32px 64px;
+}
+
+.nexus-container {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.nexus-page-title {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  text-align: center;
+  color: var(--nexus-text);
+}
+
+.nexus-page-subtitle {
+  margin: 10px 0 0;
+  font-size: 17px;
+  font-weight: 400;
+  text-align: center;
+  color: var(--nexus-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Cartões de acesso
+   -------------------------------------------------------------------------- */
+
+.nexus-cards {
+  margin-top: 52px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 56px;
+  max-width: 880px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nexus-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 330px;
+  background-color: var(--nexus-surface);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius);
+  box-shadow: var(--nexus-shadow);
+  overflow: hidden;
+}
+
+.nexus-card__header {
+  padding: 18px 26px;
+  background-color: var(--nexus-surface-alt);
+  border-bottom: 3px solid var(--nexus-blue);
+}
+
+.nexus-card__title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-align: center;
+  color: var(--nexus-text);
+}
+
+.nexus-card__body {
+  flex: 1;
+  padding: 30px 26px;
+}
+
+.nexus-card__lead {
+  margin: 0;
+  font-size: 16px;
+  color: var(--nexus-text);
+}
+
+.nexus-card__text {
+  margin: 20px 0 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--nexus-text);
+}
+
+.nexus-card__footer {
+  padding: 0 26px 26px;
+}
+
+/* --------------------------------------------------------------------------
+   Botões
+   -------------------------------------------------------------------------- */
+
+.nexus-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  width: 100%;
+  padding: 9px 18px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--nexus-blue);
+  border: 0;
+  border-radius: var(--nexus-radius-pill);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .15s ease;
+}
+
+.nexus-btn:hover,
+.nexus-btn:focus-visible {
+  background-color: var(--nexus-blue-dark);
+}
+
+.nexus-btn:focus-visible {
+  outline: 3px solid rgba(21, 101, 240, .35);
+  outline-offset: 2px;
+}
+
+.nexus-btn__icon {
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Rodapé
+   -------------------------------------------------------------------------- */
+
+.nexus-footer {
+  padding: 18px 32px;
+  font-size: 12px;
+  text-align: center;
+  color: var(--nexus-text-muted);
+  border-top: 1px solid var(--nexus-border);
+}
+
+/* --------------------------------------------------------------------------
+   Responsivo
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  .nexus-header { padding: 18px 20px; }
+  .nexus-header__inner { gap: 12px; }
+  .nexus-header__user { display: none; }
+  .nexus-main { padding: 32px 20px 48px; }
+  .nexus-page-title { font-size: 24px; }
+  .nexus-page-subtitle { font-size: 15px; }
+  .nexus-cards {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .nexus-card { min-height: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   Dashboard Operacional
+   -------------------------------------------------------------------------- */
+
+.nexus-toolbar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nexus-btn--sync {
+  width: auto;
+  padding: 9px 20px;
+  gap: 10px;
+}
+
+.nexus-dashboard-title {
+  margin: 28px 0 0;
+  font-size: 26px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  text-align: center;
+  color: var(--nexus-text);
+}
+
+.nexus-dashboard-subtitle {
+  margin: 8px 0 0;
+  font-size: 15px;
+  text-align: center;
+  color: var(--nexus-text-muted);
+}
+
+.nexus-chart-wrap {
+  position: relative;
+  width: min(360px, 90vw);
+  margin: 40px auto 0;
+}
+
+.nexus-pizza {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(var(--nexus-shadow));
+}
+
+.nexus-fatia {
+  stroke: #fff;
+  stroke-width: 2;
+  cursor: pointer;
+  transition: opacity .15s ease, transform .15s ease;
+  transform-origin: 160px 160px;
+}
+
+.nexus-fatia:hover {
+  opacity: .88;
+}
+
+.nexus-tooltip {
+  position: absolute;
+  z-index: 5;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #fff;
+  background-color: rgba(30, 32, 36, .94);
+  border-radius: var(--nexus-radius);
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: var(--nexus-shadow-lg);
+}
+
+.nexus-footer-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 40px;
+  margin-top: 44px;
+  padding: 16px 24px;
+  background-color: #6c7178;
+  border-radius: var(--nexus-radius);
+  font-size: 14px;
+  color: #f1f2f4;
+}
+
+/* --------------------------------------------------------------------------
+   Modal do módulo
+   -------------------------------------------------------------------------- */
+
+.nexus-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgba(20, 20, 22, .55);
+}
+
+.nexus-modal-overlay[hidden] { display: none; }
+
+.nexus-modal {
+  width: 100%;
+  max-width: 340px;
+  padding: 28px 30px 30px;
+  background-color: var(--nexus-surface-alt);
+  border-radius: 10px;
+  box-shadow: var(--nexus-shadow-lg);
+  text-align: center;
+}
+
+.nexus-modal__title {
+  margin: 0 0 20px;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: var(--nexus-text);
+}
+
+.nexus-modal__linha {
+  margin: 0 0 14px;
+  font-size: 15px;
+  color: var(--nexus-text);
+}
+
+.nexus-modal__acoes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.nexus-btn--modal {
+  justify-content: center;
+}
+
+.nexus-btn--voltar {
+  background-color: #4a4d52;
+  color: #fff;
+}
+
+.nexus-btn--voltar:hover {
+  background-color: #3a3c40;
+}
+
+/* --------------------------------------------------------------------------
+   Toast de sincronização
+   -------------------------------------------------------------------------- */
+
+.nexus-toast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 60;
+  max-width: 320px;
+  padding: 14px 18px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #1f7a3d;
+  border-radius: var(--nexus-radius);
+  box-shadow: var(--nexus-shadow-lg);
+}
+
+.nexus-toast[hidden] { display: none; }
+
+.nexus-toast--erro {
+  background-color: #b23a3a;
+}
+
+/* --------------------------------------------------------------------------
+   Breadcrumb
+   -------------------------------------------------------------------------- */
+
+.nexus-breadcrumb {
+  margin-bottom: 22px;
+  font-size: 13px;
+  color: var(--nexus-text-muted);
+}
+
+.nexus-breadcrumb a {
+  color: var(--nexus-blue);
+  text-decoration: none;
+}
+
+.nexus-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.nexus-breadcrumb span:not(.nexus-breadcrumb__sep) {
+  color: var(--nexus-text-muted);
+  font-weight: 500;
+}
+
+.nexus-breadcrumb__sep {
+  margin: 0 8px;
+  color: var(--nexus-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Botão Voltar
+   -------------------------------------------------------------------------- */
+
+.nexus-btn-voltar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--nexus-text-muted);
+  text-decoration: none;
+}
+
+.nexus-btn-voltar:hover {
+  color: var(--nexus-blue);
+}
+
+/* --------------------------------------------------------------------------
+   Título compacto (telas internas, não a home)
+   -------------------------------------------------------------------------- */
+
+.nexus-page-title--md {
+  font-size: 26px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.nexus-page-subtitle {
+  text-align: left;
+}
+
+/* --------------------------------------------------------------------------
+   Linha de estatísticas (3 números lado a lado)
+   -------------------------------------------------------------------------- */
+
+.nexus-stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: space-between;
+  margin: 28px 0;
+  padding: 20px 0;
+  border-top: 1px solid var(--nexus-border);
+  border-bottom: 1px solid var(--nexus-border);
+}
+
+.nexus-stat {
+  flex: 1 1 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: center;
+}
+
+.nexus-stat__valor {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--nexus-text);
+}
+
+.nexus-stat__label {
+  font-size: 13px;
+  color: var(--nexus-text-muted);
+}
+
+.nexus-section-title {
+  margin: 32px 0 16px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--nexus-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Lista de itens (rotinas mais atendidas / atendimentos da rotina)
+   -------------------------------------------------------------------------- */
+
+.nexus-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nexus-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  background-color: var(--nexus-surface);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius);
+}
+
+.nexus-list-item__titulo {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--nexus-text);
+}
+
+.nexus-list-item__meta {
+  margin: 0;
+  font-size: 13px;
+  color: var(--nexus-text-muted);
+}
+
+.nexus-btn--pequeno {
+  width: auto;
+  padding: 8px 16px;
+  flex-shrink: 0;
+}
+
+.nexus-vazio {
+  padding: 24px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--nexus-text-muted);
+}
+
+.nexus-link {
+  display: inline-block;
+  margin-top: 22px;
+  font-size: 14px;
+  color: var(--nexus-blue);
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   Grid de cartões (todas as rotinas de um módulo)
+   -------------------------------------------------------------------------- */
+
+.nexus-grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.nexus-grid-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 18px 20px;
+  background-color: var(--nexus-surface);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius);
+  box-shadow: var(--nexus-shadow);
+}
+
+.nexus-grid-card__titulo {
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--nexus-text);
+}
+
+.nexus-grid-card__linha {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--nexus-text-muted);
+}
+
+.nexus-grid-card .nexus-btn--pequeno {
+  margin-top: 10px;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   Paginação
+   -------------------------------------------------------------------------- */
+
+.nexus-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.nexus-pagination__label {
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+  color: var(--nexus-text-muted);
+  margin-bottom: 6px;
+}
+
+.nexus-pagination__numero,
+.nexus-pagination__seta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 6px;
+  font-size: 13px;
+  color: var(--nexus-text);
+  background-color: var(--nexus-surface);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius);
+  text-decoration: none;
+}
+
+.nexus-pagination__numero.is-ativo {
+  color: #fff;
+  background-color: var(--nexus-blue);
+  border-color: var(--nexus-blue);
+}
+
+.nexus-pagination__numero:hover,
+.nexus-pagination__seta:hover {
+  border-color: var(--nexus-blue);
+}
+
+/* --------------------------------------------------------------------------
+   Busca e filtro
+   -------------------------------------------------------------------------- */
+
+.nexus-search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin: 24px 0;
+}
+
+.nexus-search-bar__campo {
+  flex: 1 1 220px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  background-color: var(--nexus-surface);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-pill);
+  color: var(--nexus-text-muted);
+}
+
+.nexus-search-bar__campo input {
+  flex: 1;
+  border: 0;
+  outline: 0;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--nexus-text);
+  background: transparent;
+}
+
+.nexus-search-bar__filtro {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  background-color: var(--nexus-surface);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-pill);
+  color: var(--nexus-text-muted);
+}
+
+.nexus-search-bar__filtro select {
+  border: 0;
+  outline: 0;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--nexus-text);
+  background: transparent;
+}
+
+.nexus-btn--pesquisar {
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Detalhe do atendimento
+   -------------------------------------------------------------------------- */
+
+.nexus-detalhe-grid {
+  margin: 24px 0 0;
+  padding: 4px 0;
+  border-top: 1px solid var(--nexus-border);
+}
+
+.nexus-detalhe-linha {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 4px;
+  border-bottom: 1px solid var(--nexus-border);
+  font-size: 14px;
+}
+
+.nexus-detalhe-linha dt {
+  color: var(--nexus-text-muted);
+}
+
+.nexus-detalhe-linha dd {
+  margin: 0;
+  font-weight: 500;
+  color: var(--nexus-text);
+  text-align: right;
+}
+
+.nexus-badge {
+  display: inline-block;
+  padding: 3px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: var(--nexus-radius-pill);
+}
+
+.nexus-badge--ok {
+  color: #1f7a3d;
+  background-color: #e2f4e8;
+}
+
+.nexus-badge--pendente {
+  color: #a8660c;
+  background-color: #fdf0dc;
+}
+
+.nexus-bloco-texto {
+  margin-top: 26px;
+}
+
+.nexus-bloco-texto h2 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--nexus-text);
+}
+
+.nexus-bloco-texto p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--nexus-text);
+}
+
+/* --------------------------------------------------------------------------
+   Dashboard Analítico
+   -------------------------------------------------------------------------- */
+
+.nexus-kpi-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 36px;
+}
+
+.nexus-kpi-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  width: 190px;
+  min-height: 100px;
+  padding: 20px 18px;
+  background-color: var(--nexus-surface-alt);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius);
+}
+
+.nexus-kpi-card__label {
+  font-size: 14px;
+  color: var(--nexus-text);
+}
+
+.nexus-kpi-card__valor {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--nexus-text);
+}
+
+.nexus-panels-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 44px;
+}
+
+.nexus-panel {
+  padding: 22px 24px 26px;
+  background-color: var(--nexus-surface-alt);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius);
+}
+
+.nexus-panel__titulo {
+  margin: 0 0 18px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--nexus-text);
+}
+
+.nexus-barras {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nexus-barra-linha {
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.nexus-barra-linha__label {
+  color: var(--nexus-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nexus-barra-linha__valor {
+  color: var(--nexus-text-muted);
+  white-space: nowrap;
+}
+
+.nexus-barra-segmentos {
+  display: flex;
+  gap: 3px;
+}
+
+.nexus-barra-segmentos span {
+  width: 9px;
+  height: 15px;
+  background-color: var(--nexus-border);
+  border-radius: 1px;
+}
+
+.nexus-barra-segmentos span.preenchido {
+  background-color: #3a3d42;
+}
+
+.nexus-footer-stats--modo {
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  font-size: 13px;
+}
+
+.nexus-footer-stats__titulo {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  margin-right: 6px;
+}
+
+.nexus-footer-stats__sep {
+  opacity: .5;
+}
+
+@media (max-width: 760px) {
+  .nexus-panels-grid { grid-template-columns: 1fr; }
+  .nexus-barra-linha { grid-template-columns: 90px 1fr auto; }
+  .nexus-kpi-card { width: 100%; max-width: 260px; }
+}
+
+/* --------------------------------------------------------------------------
+   Barra de abas (seção Analítica)
+   -------------------------------------------------------------------------- */
+
+.nexus-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--nexus-border);
+}
+
+.nexus-tabs__item {
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--nexus-text-muted);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+
+.nexus-tabs__item:hover {
+  color: var(--nexus-blue);
+}
+
+.nexus-tabs__item.is-ativo {
+  color: var(--nexus-blue);
+  border-bottom-color: var(--nexus-blue);
+}
+
+/* --------------------------------------------------------------------------
+   Formulário de filtros (Comparativo / Padrões / Estimativa)
+   -------------------------------------------------------------------------- */
+
+.nexus-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  margin: 28px 0 8px;
+}
+
+.nexus-filtros__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--nexus-text-muted);
+}
+
+.nexus-filtros__campo select {
+  min-width: 160px;
+  padding: 8px 10px;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--nexus-text);
+  background-color: var(--nexus-surface);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius);
+}
+
+.nexus-dica {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--nexus-text-muted);
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   Tabela comparativa
+   -------------------------------------------------------------------------- */
+
+.nexus-tabela-wrap {
+  overflow-x: auto;
+  margin-top: 16px;
+}
+
+.nexus-tabela-comparativo {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--nexus-surface-alt);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius);
+  overflow: hidden;
+}
+
+.nexus-tabela-comparativo th,
+.nexus-tabela-comparativo td {
+  padding: 12px 18px;
+  font-size: 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--nexus-border);
+  white-space: nowrap;
+}
+
+.nexus-tabela-comparativo thead th {
+  font-weight: 600;
+  color: var(--nexus-text);
+  background-color: var(--nexus-surface);
+}
+
+.nexus-tabela-comparativo tbody th {
+  font-weight: 500;
+  color: var(--nexus-text-muted);
+}
+
+.nexus-destaques {
+  margin-top: 16px;
+  padding: 18px 22px;
+  background-color: var(--nexus-surface-alt);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius);
+}
+
+.nexus-destaques__linha {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  font-size: 14px;
+  border-bottom: 1px solid var(--nexus-border);
+}
+
+.nexus-destaques__linha:last-child {
+  border-bottom: 0;
+}
+
+.nexus-destaques__linha span {
+  color: var(--nexus-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Análise de Padrões
+   -------------------------------------------------------------------------- */
+
+.nexus-padrao-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.nexus-padrao-card {
+  display: grid;
+  grid-template-columns: 1.3fr 1.3fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 20px;
+  background-color: var(--nexus-surface);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius);
+}
+
+.nexus-padrao-card__falha {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.nexus-padrao-card__falha span {
+  font-size: 12px;
+  color: var(--nexus-text-muted);
+}
+
+.nexus-padrao-card__concentracao {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+  color: var(--nexus-text);
+}
+
+.nexus-padrao-card__rotulo {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--nexus-text-muted);
+}
+
+.nexus-padrao-card__numero {
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  color: #fff;
+  background-color: var(--nexus-blue);
+  border-radius: var(--nexus-radius);
+  white-space: nowrap;
+}
+
+.nexus-badge-info {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  color: #fff;
+  background-color: var(--nexus-blue);
+  border-radius: var(--nexus-radius);
+  white-space: nowrap;
+}
+
+.nexus-ver-mais {
+  margin-top: 4px;
+}
+
+.nexus-ver-mais summary {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 13px;
+  text-align: center;
+  color: var(--nexus-blue);
+  list-style: none;
+}
+
+.nexus-ver-mais summary::-webkit-details-marker {
+  display: none;
+}
+
+.nexus-ver-mais[open] summary {
+  margin-bottom: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   Avisos e Estimativa de Tempo
+   -------------------------------------------------------------------------- */
+
+.nexus-aviso {
+  margin: 18px 0 0;
+  padding: 12px 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--nexus-text-muted);
+  background-color: var(--nexus-surface-alt);
+  border: 1px solid var(--nexus-border);
+  border-left: 3px solid var(--nexus-blue);
+  border-radius: var(--nexus-radius);
+}
+
+.nexus-aviso--atencao {
+  border-left-color: #d99326;
+  color: #7a5210;
+  background-color: #fdf3e0;
+}
+
+.nexus-estimativa-resultado {
+  margin-top: 32px;
+  padding: 26px 24px 30px;
+  text-align: center;
+  background-color: var(--nexus-surface-alt);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius);
+}
+
+.nexus-estimativa-resultado__valor {
+  margin: 8px 0 10px;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--nexus-blue);
+}
+
+.nexus-estimativa-resultado__base {
+  margin: 0;
+  font-size: 13px;
+  color: var(--nexus-text-muted);
+}
+
+@media (max-width: 760px) {
+  .nexus-padrao-card { grid-template-columns: 1fr; text-align: left; }
+  .nexus-tabela-comparativo th, .nexus-tabela-comparativo td { padding: 10px 12px; }
+}
+
+/* --------------------------------------------------------------------------
+   Gráfico de barras simples (Evolução dos Indicadores)
+   -------------------------------------------------------------------------- */
+
+.nexus-chart-simples {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.nexus-chart-simples__eixo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 26px;
+  font-size: 11px;
+  color: var(--nexus-text-muted);
+  white-space: nowrap;
+}
+
+.nexus-chart-simples__barras {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  height: 130px;
+  padding: 8px 8px 0;
+  border-left: 1px solid var(--nexus-border);
+  border-bottom: 1px solid var(--nexus-border);
+  overflow-x: auto;
+}
+
+.nexus-chart-simples__coluna {
+  flex: 1;
+  min-width: 34px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.nexus-chart-simples__barra {
+  width: 60%;
+  max-width: 34px;
+  background-color: var(--nexus-blue);
+  border-radius: 3px 3px 0 0;
+}
+
+.nexus-chart-simples__rotulo {
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--nexus-text-muted);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   Cards de relação (Análise de Relações)
+   -------------------------------------------------------------------------- */
+
+.nexus-relacao-card {
+  padding: 18px 22px 20px;
+  background-color: var(--nexus-surface);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius);
+}
+
+.nexus-relacao-card__titulo {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--nexus-text);
+}
+
+.nexus-relacao-card__meta {
+  margin: 0 0 10px;
+  font-size: 13px;
+  text-align: center;
+  color: var(--nexus-text-muted);
+}
+
+.nexus-relacao-card__texto {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--nexus-text);
+}
+
+@media (max-width: 760px) {
+  .nexus-list-item { flex-direction: column; align-items: stretch; }
+  .nexus-list-item .nexus-btn--pequeno { justify-content: center; }
+  .nexus-detalhe-linha { flex-direction: column; gap: 4px; }
+  .nexus-detalhe-linha dd { text-align: left; }
+}
+
+@media (max-width: 760px) {
+  .nexus-dashboard-title { font-size: 20px; }
+  .nexus-footer-stats { font-size: 13px; gap: 8px 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
