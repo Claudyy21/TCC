@@ -643,19 +643,23 @@ body {
 
 .nexus-pagination {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 8px;
   margin-top: 28px;
 }
 
 .nexus-pagination__label {
-  width: 100%;
   text-align: center;
   font-size: 13px;
   color: var(--nexus-text-muted);
-  margin-bottom: 6px;
+}
+
+.nexus-pagination__controles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
 }
 
 .nexus-pagination__numero,
@@ -1311,6 +1315,87 @@ body {
 @media (max-width: 760px) {
   .nexus-dashboard-title { font-size: 20px; }
   .nexus-footer-stats { font-size: 13px; gap: 8px 20px; }
+}
+
+/* --------------------------------------------------------------------------
+   Gráfico "Tempo real x Tempo Estimado" (Estimativa de Tempo)
+   -------------------------------------------------------------------------- */
+
+.nexus-chart-legenda {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: var(--nexus-text);
+}
+
+.nexus-chart-legenda__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nexus-chart-legenda__amostra {
+  display: inline-block;
+  width: 22px;
+  height: 0;
+  border-top: 3px solid transparent;
+}
+
+.nexus-chart-legenda__amostra--real {
+  border-top-color: var(--nexus-blue);
+}
+
+.nexus-chart-legenda__amostra--estimado {
+  border-top-style: dashed;
+  border-top-color: #d9661e;
+}
+
+.nexus-linha-chart {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.nexus-linha-chart__eixo {
+  stroke: var(--nexus-border);
+  stroke-width: 1;
+}
+
+.nexus-linha-chart__rotulo-y,
+.nexus-linha-chart__rotulo-x {
+  font-size: 10px;
+  fill: var(--nexus-text-muted);
+}
+
+.nexus-linha-chart__linha {
+  fill: none;
+  stroke-width: 2.5;
+}
+
+.nexus-linha-chart__linha--real {
+  stroke: var(--nexus-blue);
+}
+
+.nexus-linha-chart__linha--estimado {
+  stroke: #d9661e;
+  stroke-dasharray: 6 4;
+  stroke-width: 2;
+}
+
+.nexus-linha-chart__ponto {
+  fill: var(--nexus-blue);
+  stroke: #fff;
+  stroke-width: 1.5;
+}
+
+.nexus-comparativo-chart__legenda {
+  margin: 14px 0 0;
+  font-size: 12px;
+  text-align: center;
+  color: var(--nexus-text-muted);
 }
 
 @media (prefers-reduced-motion: reduce) {

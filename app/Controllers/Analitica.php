@@ -138,8 +138,10 @@ class Analitica extends BaseController
         $tipoFalhaId = (int) ($this->request->getGet('tipo_falha_id') ?? 0) ?: null;
 
         $resultado = null;
+        $historico = [];
         if ($rotinaId && $tipoFalhaId) {
             $resultado = $atendimentoModel->estimativaTempo($rotinaId, $tipoFalhaId);
+            $historico = $atendimentoModel->temposHistoricos($rotinaId, $tipoFalhaId);
         }
 
         return view('analitica/estimativa', [
@@ -151,6 +153,7 @@ class Analitica extends BaseController
             'rotinaId'    => $rotinaId,
             'tipoFalhaId' => $tipoFalhaId,
             'resultado'   => $resultado,
+            'historico'   => $historico,
         ]);
     }
 

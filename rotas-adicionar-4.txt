@@ -1,0 +1,6 @@
+// Adicione estas linhas em app/Config/Routes.php,
+// junto com as demais.
+
+$routes->get('analitica/comparativo', 'Analitica::comparativo');
+$routes->get('analitica/padroes', 'Analitica::padroes');
+$routes->get('analitica/estimativa', 'Analitica::estimativa');

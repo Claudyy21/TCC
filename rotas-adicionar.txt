@@ -1,0 +1,5 @@
+// Adicione estas duas linhas em app/Config/Routes.php,
+// junto com as rotas que você já tem.
+
+$routes->get('operacional', 'Operacional::index');
+$routes->get('operacional/verificar-atualizacoes', 'Operacional::verificarAtualizacoes');

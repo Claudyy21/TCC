@@ -54,12 +54,14 @@
 
     <?php if ($totalPaginas > 1): ?>
         <nav class="nexus-pagination" aria-label="Paginação de rotinas">
-            <a class="nexus-pagination__seta" href="?pagina=<?= max(1, $pagina - 1) ?>" aria-label="Página anterior">&larr;</a>
             <span class="nexus-pagination__label">Página <?= $pagina ?> de <?= $totalPaginas ?></span>
-            <?php for ($p = 1; $p <= $totalPaginas; $p++): ?>
-                <a class="nexus-pagination__numero <?= $p === $pagina ? 'is-ativo' : '' ?>" href="?pagina=<?= $p ?>"><?= $p ?></a>
-            <?php endfor; ?>
-            <a class="nexus-pagination__seta" href="?pagina=<?= min($totalPaginas, $pagina + 1) ?>" aria-label="Próxima página">&rarr;</a>
+            <div class="nexus-pagination__controles">
+                <a class="nexus-pagination__seta" href="?pagina=<?= max(1, $pagina - 1) ?>" aria-label="Página anterior">&larr;</a>
+                <?php for ($p = 1; $p <= $totalPaginas; $p++): ?>
+                    <a class="nexus-pagination__numero <?= $p === $pagina ? 'is-ativo' : '' ?>" href="?pagina=<?= $p ?>"><?= $p ?></a>
+                <?php endfor; ?>
+                <a class="nexus-pagination__seta" href="?pagina=<?= min($totalPaginas, $pagina + 1) ?>" aria-label="Próxima página">&rarr;</a>
+            </div>
         </nav>
     <?php endif; ?>
 

@@ -1,0 +1,4 @@
+// Adicione esta linha em app/Config/Routes.php,
+// junto com as demais.
+
+$routes->get('analitica', 'Analitica::index');

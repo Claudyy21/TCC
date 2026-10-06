@@ -68,7 +68,7 @@
                 <?= \App\Libraries\GraficoPizza::tempoFormatado($resultado['mediana_min']) ?>
             </p>
             <p class="nexus-estimativa-resultado__base">
-                Baseado em <?= $resultado['total'] ?> atendimento<?= $resultado['total'] > 1 ? 's' : '' ?> anterior<?= $resultado['total'] > 1 ? 'es' : '' ?> com esse padrão (mediana, não média).
+                Baseado em <?= $resultado['total'] ?> atendimento<?= $resultado['total'] > 1 ? 's' : '' ?> anterior<?= $resultado['total'] > 1 ? 'es' : '' ?> com esse padrão.
                 <?php if ($resultado['minimo_min'] !== null && $resultado['maximo_min'] !== null && $resultado['minimo_min'] !== $resultado['maximo_min']): ?>
                     Já variou de <?= \App\Libraries\GraficoPizza::tempoFormatado($resultado['minimo_min']) ?>
                     a <?= \App\Libraries\GraficoPizza::tempoFormatado($resultado['maximo_min']) ?>.
@@ -82,6 +82,95 @@
                 </p>
             <?php endif; ?>
         </div>
+
+        <?php if (count($historico) >= 2): ?>
+            <?php
+                // --- geometria do gráfico de linha (SVG puro) ---
+                $largura = 640;
+                $altura  = 220;
+                $padEsq  = 42;
+                $padDir  = 16;
+                $padTopo = 20;
+                $padBase = 34;
+                $plotW   = $largura - $padEsq - $padDir;
+                $plotH   = $altura - $padTopo - $padBase;
+
+                $n = count($historico);
+                $maiorValor = max(array_merge(array_column($historico, 'tempo_min'), [$resultado['mediana_min']]));
+                $maiorValor = $maiorValor > 0 ? $maiorValor : 1;
+
+                $x = static fn (int $i) => $n > 1
+                    ? $padEsq + ($i / ($n - 1)) * $plotW
+                    : $padEsq + $plotW / 2;
+                $y = static fn (float $valor) => $padTopo + $plotH - ($valor / $maiorValor) * $plotH;
+
+                $pontosReal = [];
+                foreach ($historico as $i => $h) {
+                    $pontosReal[] = sprintf('%.1F,%.1F', $x($i), $y($h['tempo_min']));
+                }
+                $linhaReal = implode(' ', $pontosReal);
+
+                $yEstimado = $y($resultado['mediana_min']);
+                $linhaEstimada = sprintf('%.1F,%.1F %.1F,%.1F', $padEsq, $yEstimado, $padEsq + $plotW, $yEstimado);
+            ?>
+            <h2 class="nexus-section-title">Tempo real x Tempo Estimado</h2>
+            <div class="nexus-panel">
+
+                <div class="nexus-chart-legenda">
+                    <span class="nexus-chart-legenda__item">
+                        <span class="nexus-chart-legenda__amostra nexus-chart-legenda__amostra--real"></span>
+                        Tempo real
+                    </span>
+                    <span class="nexus-chart-legenda__item">
+                        <span class="nexus-chart-legenda__amostra nexus-chart-legenda__amostra--estimado"></span>
+                        Tempo estimado (mediana)
+                    </span>
+                </div>
+
+                <svg viewBox="0 0 <?= $largura ?> <?= $altura ?>" class="nexus-linha-chart" role="img"
+                     aria-label="Comparação entre o tempo real de cada atendimento e o tempo estimado">
+
+                    <!-- eixo -->
+                    <line x1="<?= $padEsq ?>" y1="<?= $padTopo ?>" x2="<?= $padEsq ?>" y2="<?= $padTopo + $plotH ?>" class="nexus-linha-chart__eixo" />
+                    <line x1="<?= $padEsq ?>" y1="<?= $padTopo + $plotH ?>" x2="<?= $padEsq + $plotW ?>" y2="<?= $padTopo + $plotH ?>" class="nexus-linha-chart__eixo" />
+
+                    <!-- rótulos do eixo Y -->
+                    <text x="<?= $padEsq - 8 ?>" y="<?= $padTopo + 4 ?>" class="nexus-linha-chart__rotulo-y" text-anchor="end">
+                        <?= esc(\App\Libraries\GraficoPizza::tempoFormatado($maiorValor)) ?>
+                    </text>
+                    <text x="<?= $padEsq - 8 ?>" y="<?= $padTopo + $plotH + 4 ?>" class="nexus-linha-chart__rotulo-y" text-anchor="end">0</text>
+
+                    <!-- linha do tempo estimado (constante, mediana atual) -->
+                    <polyline points="<?= $linhaEstimada ?>" class="nexus-linha-chart__linha nexus-linha-chart__linha--estimado" />
+
+                    <!-- linha do tempo real -->
+                    <polyline points="<?= $linhaReal ?>" class="nexus-linha-chart__linha nexus-linha-chart__linha--real" />
+
+                    <?php foreach ($historico as $i => $h): ?>
+                        <circle
+                            cx="<?= sprintf('%.1F', $x($i)) ?>"
+                            cy="<?= sprintf('%.1F', $y($h['tempo_min'])) ?>"
+                            r="4"
+                            class="nexus-linha-chart__ponto"
+                        >
+                            <title><?= date('d/m/Y', strtotime($h['data_abertura'])) ?>: <?= esc(\App\Libraries\GraficoPizza::tempoFormatado($h['tempo_min'])) ?></title>
+                        </circle>
+                        <text
+                            x="<?= sprintf('%.1F', $x($i)) ?>"
+                            y="<?= $padTopo + $plotH + 20 ?>"
+                            class="nexus-linha-chart__rotulo-x"
+                            text-anchor="middle"
+                        ><?= date('d/m', strtotime($h['data_abertura'])) ?></text>
+                    <?php endforeach; ?>
+
+                </svg>
+
+                <p class="nexus-comparativo-chart__legenda">
+                    Cada ponto azul é o tempo real de um atendimento já finalizado com esse padrão; a linha laranja
+                    marca o tempo estimado (mediana) atual.
+                </p>
+            </div>
+        <?php endif; ?>
 
     <?php endif; ?>
 

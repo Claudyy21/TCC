@@ -370,6 +370,35 @@ class AtendimentoModel extends Model
     }
 
     /**
+     * Lista, em ordem cronológica, o tempo real (em minutos de
+     * expediente) de cada atendimento já finalizado com o mesmo
+     * padrão (rotina + tipo de falha). Alimenta o gráfico "Tempo real
+     * x Tempo Estimado" na tela de Estimativa de Tempo.
+     */
+    public function temposHistoricos(int $rotinaId, int $tipoFalhaId): array
+    {
+        $linhas = $this->db->table('atendimentos')
+            ->select("
+                id,
+                data_abertura,
+                minutos_uteis(data_resposta, data_fechamento) as tempo_min
+            ", false)
+            ->where('rotina_id', $rotinaId)
+            ->where('tipo_falha_id', $tipoFalhaId)
+            ->where('data_fechamento IS NOT NULL', null, false)
+            ->orderBy('data_abertura', 'ASC')
+            ->get()
+            ->getResultArray();
+
+        foreach ($linhas as &$linha) {
+            $linha['tempo_min'] = (float) $linha['tempo_min'];
+        }
+        unset($linha);
+
+        return $linhas;
+    }
+
+    /**
      * Quantidade de atendimentos por modo de atendimento (Chat,
      * Ligação, Registro Web...). Alimenta a faixa "Modo de
      * Atendimento" do rodapé do Dashboard Analítico.

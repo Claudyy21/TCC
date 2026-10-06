@@ -1,0 +1,7 @@
+// Adicione estas linhas em app/Config/Routes.php,
+// junto com as que você já tem (Home, operacional, verificar-atualizacoes).
+
+$routes->get('operacional/modulo/(:num)', 'Operacional::modulo/$1');
+$routes->get('operacional/modulo/(:num)/rotinas', 'Operacional::moduloRotinas/$1');
+$routes->get('operacional/rotina/(:num)', 'Operacional::rotina/$1');
+$routes->get('operacional/atendimento/(:num)', 'Operacional::atendimento/$1');

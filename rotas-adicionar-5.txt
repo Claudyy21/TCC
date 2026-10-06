@@ -1,0 +1,5 @@
+// Adicione estas linhas em app/Config/Routes.php,
+// junto com as demais.
+
+$routes->get('analitica/evolucao', 'Analitica::evolucao');
+$routes->get('analitica/relacoes', 'Analitica::relacoes');
